@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>الأفعال الشاذة - Irregular Verbs</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Poppins:wght@400;600;700&display=swap');
+  :root {
+    --bg:#0f0c29; --card:#1a1545; --card2:#231d5c; --accent:#7c5cfc;
+    --accent2:#ff6b9d; --gold:#ffd166; --green:#06d6a0; --red:#ef476f;
+    --blue:#4cc9f0; --text:#f0eeff; --muted:#a09ec0; --radius:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Tajawal',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
+  body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(124,92,252,.15) 0%,transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(255,107,157,.12) 0%,transparent 60%);pointer-events:none;z-index:0;}
+  .stars{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+  .star{position:absolute;width:2px;height:2px;background:white;border-radius:50%;animation:twinkle var(--d,3s) infinite var(--del,0s);}
+  @keyframes twinkle{0%,100%{opacity:.2;transform:scale(1);}50%{opacity:1;transform:scale(1.5);}}
+  .screen{position:relative;z-index:1;display:none;min-height:100vh;padding:20px 16px;max-width:520px;margin:0 auto;}
+  .screen.active{display:flex;flex-direction:column;}
+
+  .home-logo{text-align:center;margin:26px 0 14px;}
+  .logo-icon{font-size:56px;display:block;animation:float 3s ease-in-out infinite;}
+  @keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+  .home-title{font-size:23px;font-weight:900;text-align:center;background:linear-gradient(135deg,#7c5cfc,#ff6b9d,#ffd166);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:6px;line-height:1.3;}
+  .home-sub{text-align:center;color:var(--muted);font-size:13.5px;margin-bottom:18px;}
+  .section-title{font-size:14px;font-weight:800;color:var(--text);margin:16px 0 8px;display:flex;align-items:center;gap:6px;}
+  .info-card{background:var(--card);border:1.5px solid rgba(124,92,252,.3);border-radius:var(--radius);padding:18px;margin-top:14px;font-size:14px;color:var(--muted);line-height:1.9;}
+  .info-card b{color:var(--text);}
+
+  /* HOME TABS */
+  .home-tabs{display:flex;gap:8px;background:var(--card);border-radius:18px;padding:5px;margin:4px 0 18px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.06);}
+  .home-tab-btn{flex:1;padding:13px 6px;border:none;border-radius:14px;background:transparent;color:var(--muted);font-family:'Tajawal',sans-serif;font-size:14.5px;font-weight:800;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:6px;}
+  .home-tab-btn.active{background:linear-gradient(135deg,var(--accent),var(--accent2));color:white;box-shadow:0 6px 16px rgba(124,92,252,.4);}
+  .home-tab-content{display:none;}
+  .home-tab-content.active{display:block;animation:popIn .3s ease;}
+  @keyframes popIn{from{opacity:0;transform:scale(.85) translateY(6px);}to{opacity:1;transform:scale(1) translateY(0);}}
+
+  /* VIDEO TAB */
+  .video-wrap{width:100%;border-radius:var(--radius);overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.4);margin-bottom:14px;background:#000;}
+  .video-wrap video{width:100%;display:block;}
+
+  /* GROUP CARD */
+  .group-card{background:linear-gradient(160deg,var(--card),var(--card2));border:1.5px solid rgba(255,255,255,.1);border-radius:20px;padding:16px;margin-bottom:14px;box-shadow:0 6px 18px rgba(0,0,0,.25);}
+  .group-card-title{font-size:16px;font-weight:900;color:var(--gold);margin-bottom:2px;display:flex;align-items:center;gap:8px;}
+  .group-card-sub{font-size:12px;color:var(--muted);margin-bottom:12px;}
+  .group-btns{display:grid;grid-template-columns:1fr 1fr;gap:7px;}
+  .group-btn{padding:12px 4px;border:1.5px solid rgba(255,255,255,.15);border-radius:16px;background:var(--card);color:var(--text);font-family:'Tajawal',sans-serif;font-size:11.5px;font-weight:800;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:5px;transition:all .2s;}
+  .group-btn .gb-emoji{font-size:19px;}
+  .group-btn:hover{transform:translateY(-3px);}
+  .group-btn.wr{border-color:rgba(255,107,157,.5);}
+  .group-btn.wr:hover{background:rgba(255,107,157,.15);box-shadow:0 8px 20px rgba(255,107,157,.25);}
+  .group-btn.dd{border-color:rgba(255,209,102,.5);}
+  .group-btn.dd:hover{background:rgba(255,209,102,.15);box-shadow:0 8px 20px rgba(255,209,102,.25);}
+
+  /* DRAG & DROP TABLE */
+  .dd-table{width:100%;border-collapse:separate;border-spacing:0;margin-bottom:6px;table-layout:fixed;}
+  .dd-table th{font-family:'Poppins',sans-serif;font-size:10.5px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding-bottom:6px;}
+  .dd-table td{background:linear-gradient(160deg,var(--card),var(--card2));text-align:center;padding:10px 6px;font-family:'Poppins',sans-serif;box-shadow:inset 0 0 0 1px rgba(255,255,255,.06);}
+  .dd-base{border-radius:14px 0 0 14px;font-size:17px;font-weight:700;color:var(--gold);direction:ltr;word-break:break-word;}
+  .dd-drop{border-radius:0;height:56px;border:2px dashed rgba(255,255,255,.25);vertical-align:middle;transition:all .2s;position:relative;}
+  .dd-drop:last-child{border-radius:0 14px 14px 0;}
+  .dd-drop.drag-over{border-color:var(--accent);background:rgba(124,92,252,.18);}
+  .dd-drop.correct{border:2px solid var(--green);background:rgba(6,214,160,.15);}
+  .dd-drop.wrong{border:2px solid var(--red);background:rgba(239,71,111,.15);}
+  .dd-placeholder{color:var(--muted);font-size:16px;opacity:.5;}
+  .dd-answers-row td{background:transparent;box-shadow:none;padding:2px 6px 12px;font-size:11px;color:var(--green);font-family:'Poppins',sans-serif;direction:ltr;}
+
+  .dd-bank-label{font-size:12px;color:var(--muted);font-weight:700;margin:14px 0 8px;text-align:center;}
+  .dd-bank{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:16px;min-height:54px;padding:12px;background:rgba(255,255,255,.03);border-radius:16px;border:1.5px dashed rgba(255,255,255,.1);}
+  .dd-chip{touch-action:none;user-select:none;-webkit-user-select:none;background:linear-gradient(160deg,var(--card2),var(--card));border:1.5px solid rgba(255,255,255,.18);border-radius:12px;padding:11px 16px;font-family:'Poppins',sans-serif;direction:ltr;font-size:15px;font-weight:600;color:var(--text);cursor:grab;box-shadow:0 4px 10px rgba(0,0,0,.25);transition:box-shadow .15s,opacity .15s;}
+  .dd-chip.dragging{cursor:grabbing;box-shadow:0 14px 30px rgba(0,0,0,.5);opacity:.97;z-index:1000;position:relative;}
+  .dd-chip.placed{box-shadow:none;width:100%;text-align:center;}
+  .dd-chip.disabled{cursor:default;}
+
+  /* QUIZ HEADER */
+  .quiz-header{display:flex;align-items:center;justify-content:center;margin-bottom:12px;}
+  .score-mini{display:flex;gap:8px;}
+  .score-pill{border-radius:20px;padding:5px 12px;font-size:12px;font-weight:700;display:flex;align-items:center;gap:4px;}
+  .score-pill.ok{background:rgba(6,214,160,.15);color:var(--green);border:1.5px solid rgba(6,214,160,.4);}
+  .score-pill.no{background:rgba(239,71,111,.15);color:var(--red);border:1.5px solid rgba(239,71,111,.4);}
+  .q-counter{color:var(--muted);font-size:12px;font-family:'Poppins',sans-serif;text-align:center;margin-bottom:6px;}
+  .progress-wrap{background:rgba(255,255,255,.08);border-radius:10px;height:8px;margin-bottom:16px;overflow:hidden;}
+  .progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:10px;transition:width .4s ease;}
+  .cat-tag{text-align:center;font-size:13px;font-weight:700;color:var(--gold);margin-bottom:4px;}
+  .hint{text-align:center;font-size:13px;color:var(--muted);margin-bottom:14px;}
+  .hint b{color:var(--gold);}
+
+  /* QUESTION CARD */
+  .question-card{background:linear-gradient(160deg,var(--card),var(--card2));border-radius:24px;padding:30px 20px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.07);margin-bottom:18px;animation:popIn .35s ease;}
+  .q-label{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:10px;}
+  .q-verb{font-family:'Poppins',sans-serif;direction:ltr;font-size:38px;font-weight:700;color:var(--text);}
+  .q-verb .q-accent{color:var(--gold);}
+
+  /* MC OPTIONS */
+  .mc-options{display:flex;flex-direction:column;gap:10px;flex:1;}
+  .word-btn{background:linear-gradient(160deg,var(--card),var(--card2));border:2px solid transparent;border-radius:18px;padding:16px 14px;cursor:pointer;font-family:'Poppins',sans-serif;direction:ltr;color:var(--text);font-size:17px;font-weight:600;transition:all .2s;text-align:center;box-shadow:0 4px 14px rgba(0,0,0,.25), inset 0 0 0 1px rgba(255,255,255,.06);}
+  .word-btn:hover:not(:disabled){transform:translateY(-2px);background:linear-gradient(160deg,var(--card2),var(--card));}
+  .word-btn.correct{background:rgba(6,214,160,.2);box-shadow:0 0 0 2px var(--green);}
+  .word-btn.wrong{background:rgba(239,71,111,.18);box-shadow:0 0 0 2px var(--red);}
+  .word-btn:disabled{cursor:default;}
+
+  /* WRITTEN */
+  .written-fields{display:flex;flex-direction:column;gap:14px;margin-bottom:16px;}
+  .field-label{font-size:13px;color:var(--muted);font-weight:700;margin-bottom:6px;display:block;}
+  .field-input{width:100%;padding:14px 16px;border-radius:14px;border:2px solid rgba(255,255,255,.15);background:var(--card);color:var(--text);font-family:'Poppins',sans-serif;direction:ltr;font-size:17px;font-weight:600;outline:none;transition:all .2s;}
+  .field-input:focus{border-color:var(--accent);}
+  .field-input.correct{border-color:var(--green);background:rgba(6,214,160,.1);}
+  .field-input.wrong{border-color:var(--red);background:rgba(239,71,111,.1);}
+  .field-answer{font-size:12.5px;color:var(--green);margin-top:5px;font-family:'Poppins',sans-serif;direction:ltr;}
+  .check-btn{padding:16px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;border-radius:var(--radius);color:white;font-family:'Tajawal',sans-serif;font-size:16px;font-weight:900;cursor:pointer;transition:all .2s;margin-bottom:10px;}
+  .check-btn:hover{transform:translateY(-2px);}
+  .check-btn:disabled{opacity:.5;cursor:default;}
+  .next-btn{padding:16px;background:var(--card);border:2px solid rgba(255,255,255,.15);border-radius:var(--radius);color:var(--text);font-family:'Tajawal',sans-serif;font-size:16px;font-weight:800;cursor:pointer;transition:all .2s;margin-bottom:10px;display:none;}
+  .next-btn.show{display:block;}
+  .next-btn:hover{border-color:var(--accent);}
+
+  .bottom-back-btn{width:100%;margin-top:auto;padding-top:14px;}
+  .bottom-back-btn-inner{width:100%;padding:17px;background:linear-gradient(160deg,var(--card),var(--card2));border:2px solid rgba(239,71,111,.45);border-radius:var(--radius);color:var(--text);font-family:'Tajawal',sans-serif;font-size:16.5px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .2s;box-shadow:0 6px 18px rgba(0,0,0,.25);}
+  .bottom-back-btn-inner:hover{border-color:var(--red);background:rgba(239,71,111,.14);transform:translateY(-2px);}
+
+  /* RESULT */
+  .result-screen{text-align:center;padding-top:36px;}
+  .result-icon{font-size:76px;display:block;animation:bounce 1s ease infinite;margin-bottom:14px;}
+  @keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-14px);}}
+  .result-title{font-size:24px;font-weight:900;margin-bottom:8px;background:linear-gradient(135deg,#ffd166,#ff6b9d);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+  .result-score{font-size:52px;font-weight:900;font-family:'Poppins',sans-serif;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:14px 0;}
+  .result-pct{font-size:17px;color:var(--muted);margin-bottom:20px;}
+  .result-rating{background:var(--card);border:2px solid var(--gold);border-radius:var(--radius);padding:16px;margin-bottom:22px;font-size:15px;color:var(--gold);font-weight:700;}
+  .stars-display{font-size:26px;letter-spacing:4px;margin-bottom:6px;}
+  .result-btns{display:flex;flex-direction:column;gap:10px;}
+  .retry-btn{padding:16px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;border-radius:var(--radius);color:white;font-family:'Tajawal',sans-serif;font-size:17px;font-weight:700;cursor:pointer;transition:all .2s;}
+  .retry-btn:hover{transform:translateY(-2px);}
+  .home-link-btn{padding:14px;background:transparent;border:2px solid rgba(255,255,255,.15);border-radius:var(--radius);color:var(--muted);font-family:'Tajawal',sans-serif;font-size:16px;font-weight:600;cursor:pointer;transition:all .2s;}
+  .home-link-btn:hover{border-color:var(--accent);color:var(--text);}
+  .confetti-piece{position:fixed;width:10px;height:10px;top:-10px;animation:confettiFall linear forwards;z-index:1000;pointer-events:none;border-radius:2px;}
+  @keyframes confettiFall{to{transform:translateY(105vh) rotate(720deg);opacity:0;}}
+</style>
+</head>
+<body>
+<div class="stars" id="stars"></div>
+
+<!-- HOME SCREEN -->
+<div class="screen active" id="homeScreen">
+  <div class="home-logo"><span class="logo-icon">📖</span></div>
+  <div class="home-title">الأفعال الشاذة — Irregular Verbs</div>
+  <div class="home-sub">راجع الأغنية ثم اختبر حفظك مجموعة مجموعة</div>
+
+  <div class="home-tabs">
+    <button class="home-tab-btn active" id="tabBtnVideo">🎬 الفيديو</button>
+    <button class="home-tab-btn" id="tabBtnQuiz">📝 الاختبارات</button>
+  </div>
+
+  <!-- TAB: VIDEO -->
+  <div class="home-tab-content active" id="tabVideoContent">
+    <div class="section-title">🎬 فيديو المراجعة</div>
+    <div class="video-wrap">
+      <video controls preload="metadata" src="irregular-verbs.mp4"></video>
+    </div>
+    <div class="info-card">
+      <b>طريقة المراجعة:</b><br>
+      • شاهد الفيديو مرة أو مرتين وردد الأفعال مع الأغنية.<br>
+      • كل مجموعة (Group) في الفيديو تقابل مجموعة في تبويب الاختبارات.<br>
+      • ابدأ بحفظ المجموعة 1 فقط، ثم اختبر نفسك فيها قبل الانتقال للمجموعة التالية.
+    </div>
+  </div>
+
+  <!-- TAB: QUIZ -->
+  <div class="home-tab-content" id="tabQuizContent">
+    <div id="groupsContainer"></div>
+    <div class="info-card">
+      <b>طريقة الاختبار:</b><br>
+      • <b>سحب وإفلات:</b> اسحب الشكل الصحيح المكتوب لنفس الفعل من بين عدة أشكال متشابهة في الكتابة.<br>
+      • <b>كتابي:</b> اكتب الماضي والتصريف الثالث بنفسك ثم تحقق من إجابتك.<br>
+      • ابدأ بالمجموعة 1 دائماً — لا تنتقل للمجموعة التالية إلا بعد إتقان الحالية.
+    </div>
+  </div>
+</div>
+
+<!-- WRITTEN QUIZ SCREEN -->
+<div class="screen" id="wrScreen">
+  <div class="quiz-header">
+    <div class="score-mini">
+      <div class="score-pill ok">✅ <span id="wrOkCount">0</span></div>
+      <div class="score-pill no">❌ <span id="wrNoCount">0</span></div>
+    </div>
+  </div>
+  <div class="cat-tag" id="wrCatTag"></div>
+  <div class="q-counter" id="wrCounter">0 / 0</div>
+  <div class="progress-wrap"><div class="progress-fill" id="wrProgressFill" style="width:0%"></div></div>
+  <div class="hint">اكتب الماضي (Past) والتصريف الثالث (Past Participle) للفعل التالي</div>
+  <div class="question-card">
+    <div class="q-label">Base Verb</div>
+    <div class="q-verb"><span class="q-accent" id="wrQVerb"></span></div>
+  </div>
+  <div class="written-fields">
+    <div>
+      <label class="field-label">Past</label>
+      <input type="text" class="field-input" id="wrPastInput" autocomplete="off" autocapitalize="off" spellcheck="false">
+      <div class="field-answer" id="wrPastAnswer"></div>
+    </div>
+    <div>
+      <label class="field-label">Past Participle</label>
+      <input type="text" class="field-input" id="wrPPInput" autocomplete="off" autocapitalize="off" spellcheck="false">
+      <div class="field-answer" id="wrPPAnswer"></div>
+    </div>
+  </div>
+  <button class="check-btn" id="wrCheckBtn">تحقق ✔️</button>
+  <button class="next-btn" id="wrNextBtn">التالي ➡️</button>
+  <div class="bottom-back-btn">
+    <button class="bottom-back-btn-inner" id="wrBackBtn">⬅ رجوع للرئيسية</button>
+  </div>
+</div>
+
+<!-- DRAG & DROP TABLE QUIZ SCREEN -->
+<div class="screen" id="ddScreen">
+  <div class="quiz-header">
+    <div class="score-mini">
+      <div class="score-pill ok">✅ <span id="ddOkCount">0</span></div>
+      <div class="score-pill no">❌ <span id="ddNoCount">0</span></div>
+    </div>
+  </div>
+  <div class="cat-tag" id="ddCatTag"></div>
+  <div class="q-counter" id="ddCounter">0 / 0</div>
+  <div class="progress-wrap"><div class="progress-fill" id="ddProgressFill" style="width:0%"></div></div>
+  <div class="hint">انتبه: بعض الكلمات في البنك مكتوبة بشكل خاطئ — اسحب <b>الشكل الصحيح</b> من كل فعل وضعه في الخانة المناسبة</div>
+
+  <table class="dd-table">
+    <thead>
+      <tr><th>Base</th><th>Past</th><th>Past Participle</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="dd-base" id="ddBaseVerb"></td>
+        <td class="dd-drop" id="ddPastZone" data-slot="past"><span class="dd-placeholder">⬇</span></td>
+        <td class="dd-drop" id="ddPPZone" data-slot="pp"><span class="dd-placeholder">⬇</span></td>
+      </tr>
+      <tr class="dd-answers-row">
+        <td></td>
+        <td id="ddPastAnswer"></td>
+        <td id="ddPPAnswer"></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="dd-bank-label">🎒 بنك الكلمات — اسحب منه</div>
+  <div class="dd-bank" id="ddBank"></div>
+
+  <button class="check-btn" id="ddCheckBtn">تحقق ✔️</button>
+  <button class="next-btn" id="ddNextBtn">التالي ➡️</button>
+  <div class="bottom-back-btn">
+    <button class="bottom-back-btn-inner" id="ddBackBtn">⬅ رجوع للرئيسية</button>
+  </div>
+</div>
+
+<!-- RESULT SCREEN -->
+<div class="screen" id="resultScreen">
+  <div class="result-screen">
+    <span class="result-icon" id="resultIcon">🏆</span>
+    <div class="result-title">أحسنت! أنهيت الاختبار</div>
+    <div class="result-score" id="resultScore">0/0</div>
+    <div class="result-pct" id="resultPct">0%</div>
+    <div class="result-rating">
+      <div class="stars-display" id="starsDisplay">⭐⭐⭐</div>
+      <div id="ratingText">أداء رائع!</div>
+    </div>
+    <div class="result-btns">
+      <button class="retry-btn" id="retryBtn">أعد المحاولة 🔄</button>
+      <button class="home-link-btn" id="homeBtn">الرئيسية 🏠</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+//  DATA — الأفعال الشاذة مقسمة إلى 5 مجموعات (كما في الفيديو)
+// ============================================================
+const GROUPS = [
+  { name: "المجموعة 1", verbs: [
+    ["Be","was, were","been"],["Become","became","become"],["Begin","began","begun"],
+    ["Bend","bent","bent"],["Bite","bit","bitten"],["Blow","blew","blown"],
+    ["Break","broke","broken"],["Bring","brought","brought"]
+  ]},
+  { name: "المجموعة 2", verbs: [
+    ["Build","built","built"],["Buy","bought","bought"],["Catch","caught","caught"],
+    ["Choose","chose","chosen"],["Come","came","come"],["Cost","cost","cost"],
+    ["Cut","cut","cut"],["Do","did","done"]
+  ]},
+  { name: "المجموعة 3", verbs: [
+    ["Draw","drew","drawn"],["Drink","drank","drunk"],["Drive","drove","driven"],
+    ["Eat","ate","eaten"],["Fall","fell","fallen"],["Feed","fed","fed"],
+    ["Feel","felt","felt"],["Fight","fought","fought"]
+  ]},
+  { name: "المجموعة 4", verbs: [
+    ["Find","found","found"],["Fly","flew","flown"],["Forget","forgot","forgotten"],
+    ["Get","got","gotten"],["Give","gave","given"],["Go","went","gone"],
+    ["Grow","grew","grown"],["Hang","hung","hung"]
+  ]},
+  { name: "المجموعة 5", verbs: [
+    ["Have","had","had"],["Hear","heard","heard"],["Hide","hid","hidden"],
+    ["Hit","hit","hit"],["Hold","held","held"],["Hurt","hurt","hurt"]
+  ]}
+];
+
+let currentGroupIdx = 0;
+let currentMode = 'dd'; // 'dd' or 'wr'
+let quizQuestions = [];
+let qIndex = 0;
+let okCount = 0, noCount = 0;
+
+// ============================================================
+//  HOME — بناء بطاقات المجموعات
+// ============================================================
+function buildGroupsUI(){
+  const container = document.getElementById('groupsContainer');
+  container.innerHTML = '';
+  GROUPS.forEach((g, idx) => {
+    const card = document.createElement('div');
+    card.className = 'group-card';
+    card.innerHTML = `
+      <div class="group-card-title">📘 ${g.name}</div>
+      <div class="group-card-sub">${g.verbs.length} أفعال — ${g.verbs.map(v=>v[0]).join(', ')}</div>
+      <div class="group-btns">
+        <button class="group-btn dd" data-idx="${idx}" data-mode="dd"><span class="gb-emoji">🎯</span>سحب وإفلات</button>
+        <button class="group-btn wr" data-idx="${idx}" data-mode="wr"><span class="gb-emoji">✍️</span>كتابي</button>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+  container.querySelectorAll('.group-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const idx = parseInt(btn.dataset.idx);
+      const mode = btn.dataset.mode;
+      if(mode==='dd') startDDQuiz(idx);
+      else startWRQuiz(idx);
+    });
+  });
+}
+
+// ============================================================
+//  UTIL
+// ============================================================
+function shuffle(arr){
+  const a = [...arr];
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function goHome(){ showScreen('homeScreen'); }
+
+function switchHomeTab(tab){
+  const isVideo = tab === 'video';
+  document.getElementById('tabBtnVideo').classList.toggle('active', isVideo);
+  document.getElementById('tabBtnQuiz').classList.toggle('active', !isVideo);
+  document.getElementById('tabVideoContent').classList.toggle('active', isVideo);
+  document.getElementById('tabQuizContent').classList.toggle('active', !isVideo);
+}
+
+function createStars(){
+  const c = document.getElementById('stars');
+  for(let i=0;i<80;i++){
+    const s = document.createElement('div');
+    s.className = 'star';
+    s.style.left = Math.random()*100+'%';
+    s.style.top = Math.random()*100+'%';
+    s.style.setProperty('--d', (Math.random()*3+2)+'s');
+    s.style.setProperty('--del', (Math.random()*3)+'s');
+    const sz = Math.random()*2+1;
+    s.style.width = sz+'px'; s.style.height = sz+'px';
+    c.appendChild(s);
+  }
+}
+
+// ============================================================
+//  WRITTEN QUIZ
+// ============================================================
+function startWRQuiz(groupIdx){
+  currentGroupIdx = groupIdx;
+  currentMode = 'wr';
+  quizQuestions = shuffle(GROUPS[groupIdx].verbs);
+  qIndex = 0; okCount = 0; noCount = 0;
+
+  document.getElementById('wrCatTag').textContent = `📘 ${GROUPS[groupIdx].name} — اختبار كتابي`;
+  updateWRScore();
+  showScreen('wrScreen');
+  renderWRQuestion();
+}
+
+function updateWRScore(){
+  document.getElementById('wrOkCount').textContent = okCount;
+  document.getElementById('wrNoCount').textContent = noCount;
+}
+
+function normalizeAnswer(str){
+  return str.trim().toLowerCase().replace(/\s+/g,' ');
+}
+
+function acceptableVariants(correct){
+  // "was, were" -> ["was","were","was, were","was and were"]
+  const parts = correct.split(',').map(p=>normalizeAnswer(p));
+  const variants = new Set(parts);
+  variants.add(normalizeAnswer(correct));
+  if(parts.length>1) variants.add(parts.join(' and '));
+  return variants;
+}
+
+function renderWRQuestion(){
+  if(qIndex >= quizQuestions.length){ return showResult(); }
+  const total = quizQuestions.length;
+  document.getElementById('wrCounter').textContent = `${qIndex+1} / ${total}`;
+  document.getElementById('wrProgressFill').style.width = (qIndex/total*100)+'%';
+
+  const [base] = quizQuestions[qIndex];
+  document.getElementById('wrQVerb').textContent = base;
+
+  const pastInput = document.getElementById('wrPastInput');
+  const ppInput = document.getElementById('wrPPInput');
+  pastInput.value=''; ppInput.value='';
+  pastInput.className='field-input'; ppInput.className='field-input';
+  document.getElementById('wrPastAnswer').textContent='';
+  document.getElementById('wrPPAnswer').textContent='';
+  document.getElementById('wrCheckBtn').style.display='block';
+  document.getElementById('wrCheckBtn').disabled=false;
+  document.getElementById('wrNextBtn').classList.remove('show');
+  pastInput.focus();
+}
+
+function checkWRAnswer(){
+  const [base, past, pp] = quizQuestions[qIndex];
+  const pastInput = document.getElementById('wrPastInput');
+  const ppInput = document.getElementById('wrPPInput');
+
+  const pastOk = acceptableVariants(past).has(normalizeAnswer(pastInput.value));
+  const ppOk = acceptableVariants(pp).has(normalizeAnswer(ppInput.value));
+
+  pastInput.className = 'field-input ' + (pastOk ? 'correct':'wrong');
+  ppInput.className = 'field-input ' + (ppOk ? 'correct':'wrong');
+
+  if(!pastOk) document.getElementById('wrPastAnswer').textContent = '✅ ' + past;
+  if(!ppOk) document.getElementById('wrPPAnswer').textContent = '✅ ' + pp;
+
+  if(pastOk && ppOk) okCount++; else noCount++;
+  updateWRScore();
+
+  document.getElementById('wrCheckBtn').style.display='none';
+  document.getElementById('wrNextBtn').classList.add('show');
+  pastInput.disabled = true; ppInput.disabled = true;
+}
+
+function nextWRQuestion(){
+  document.getElementById('wrPastInput').disabled = false;
+  document.getElementById('wrPPInput').disabled = false;
+  qIndex++;
+  renderWRQuestion();
+}
+
+// ============================================================
+//  DRAG & DROP TABLE QUIZ
+// ============================================================
+let ddCorrect = { past:'', pp:'' };
+let ddChecked = false;
+
+function startDDQuiz(groupIdx){
+  currentGroupIdx = groupIdx;
+  currentMode = 'dd';
+  quizQuestions = shuffle(GROUPS[groupIdx].verbs);
+  qIndex = 0; okCount = 0; noCount = 0;
+
+  document.getElementById('ddCatTag').textContent = `📘 ${GROUPS[groupIdx].name} — سحب وإفلات`;
+  updateDDScore();
+  showScreen('ddScreen');
+  renderDDQuestion();
+}
+
+function updateDDScore(){
+  document.getElementById('ddOkCount').textContent = okCount;
+  document.getElementById('ddNoCount').textContent = noCount;
+}
+
+// Generate a plausible MISSPELLING of the same word (transposed letters,
+// doubled/dropped letters, or swapped vowels) so the learner has to pick
+// the correctly-written form of the SAME verb, not a different verb.
+function misspellWord(word){
+  const w = word;
+  const strategies = [
+    // swap two adjacent interior letters
+    () => {
+      if(w.length < 3) return null;
+      const i = 1 + Math.floor(Math.random()*(w.length-2));
+      const a = w.split('');
+      [a[i], a[i+1]] = [a[i+1], a[i]];
+      return a.join('');
+    },
+    // double a random letter
+    () => {
+      const i = Math.floor(Math.random()*w.length);
+      return w.slice(0,i+1) + w[i] + w.slice(i+1);
+    },
+    // drop a random interior letter
+    () => {
+      if(w.length < 4) return null;
+      const i = 1 + Math.floor(Math.random()*(w.length-2));
+      return w.slice(0,i) + w.slice(i+1);
+    },
+    // swap a common vowel for another
+    () => {
+      const swaps = {a:'e', e:'a', i:'e', o:'u', u:'o'};
+      const idxs = [...w].map((c,i)=>swaps[c.toLowerCase()]?i:-1).filter(i=>i>=0);
+      if(!idxs.length) return null;
+      const i = idxs[Math.floor(Math.random()*idxs.length)];
+      const rep = swaps[w[i].toLowerCase()];
+      return w.slice(0,i) + rep + w.slice(i+1);
+    }
+  ];
+  for(let attempt=0; attempt<12; attempt++){
+    const fn = strategies[Math.floor(Math.random()*strategies.length)];
+    const res = fn();
+    if(res && normalizeAnswer(res) !== normalizeAnswer(w)) return res;
+  }
+  return w + w[w.length-1]; // fallback: duplicate last letter
+}
+
+// Build `count` distinct misspelled variants of `correct`, avoiding
+// collisions with anything in avoidSet (normalized).
+function misspellVariants(correct, count, avoidSet){
+  const out = new Set();
+  let tries = 0;
+  while(out.size < count && tries < 40){
+    tries++;
+    const m = misspellWord(correct);
+    const norm = normalizeAnswer(m);
+    if(norm !== normalizeAnswer(correct) && !avoidSet.has(norm)){
+      let dup = false;
+      out.forEach(x=>{ if(normalizeAnswer(x)===norm) dup = true; });
+      if(!dup) out.add(m);
+    }
+  }
+  return [...out];
+}
+
+function ddDistractors(base, correctPast, correctPP){
+  const avoid = new Set([normalizeAnswer(correctPast), normalizeAnswer(correctPP)]);
+  const pastVariants = misspellVariants(correctPast, 2, avoid);
+  const ppVariants = misspellVariants(correctPP, 2, avoid);
+  return [...pastVariants, ...ppVariants];
+}
+
+function renderDDQuestion(){
+  if(qIndex >= quizQuestions.length){ return showResult(); }
+  const total = quizQuestions.length;
+  document.getElementById('ddCounter').textContent = `${qIndex+1} / ${total}`;
+  document.getElementById('ddProgressFill').style.width = (qIndex/total*100)+'%';
+
+  const [base, past, pp] = quizQuestions[qIndex];
+  // use the first variant if multiple ("was, were" -> "was" as the primary drag target)
+  const pastMain = past.split(',')[0].trim();
+  const ppMain = pp.split(',')[0].trim();
+  ddCorrect = { past: pastMain, pp: ppMain };
+  ddChecked = false;
+
+  document.getElementById('ddBaseVerb').textContent = base;
+
+  const pastZone = document.getElementById('ddPastZone');
+  const ppZone = document.getElementById('ddPPZone');
+  pastZone.innerHTML = '<span class="dd-placeholder">⬇</span>';
+  ppZone.innerHTML = '<span class="dd-placeholder">⬇</span>';
+  pastZone.className = 'dd-drop';
+  ppZone.className = 'dd-drop';
+  document.getElementById('ddPastAnswer').textContent = '';
+  document.getElementById('ddPPAnswer').textContent = '';
+
+  document.getElementById('ddCheckBtn').style.display = 'block';
+  document.getElementById('ddCheckBtn').disabled = false;
+  document.getElementById('ddNextBtn').classList.remove('show');
+
+  // build word bank: correct answers + look-alike distractors from same group
+  const distractors = ddDistractors(base, pastMain, ppMain);
+  const words = shuffle([pastMain, ppMain, ...distractors]);
+
+  const bank = document.getElementById('ddBank');
+  bank.innerHTML = '';
+  words.forEach(w=>{
+    const chip = document.createElement('div');
+    chip.className = 'dd-chip';
+    chip.textContent = w;
+    chip.dataset.word = w;
+    bank.appendChild(chip);
+    makeChipDraggable(chip);
+  });
+
+  // clicking a filled zone returns its chip to the bank (before checking)
+  [pastZone, ppZone].forEach(zone=>{
+    zone.onclick = ()=>{
+      if(ddChecked) return;
+      const chip = zone.querySelector('.dd-chip');
+      if(chip) returnChipToBank(chip);
+    };
+  });
+}
+
+function returnChipToBank(chip){
+  const zone = chip.parentElement;
+  if(zone && zone.classList.contains('dd-drop')){
+    zone.innerHTML = '<span class="dd-placeholder">⬇</span>';
+  }
+  chip.classList.remove('placed');
+  chip.style.transform = '';
+  document.getElementById('ddBank').appendChild(chip);
+}
+
+function placeChipInZone(chip, zone){
+  if(ddChecked) return;
+  // if this zone already holds a different chip, send it back to the bank
+  const existing = zone.querySelector('.dd-chip');
+  if(existing && existing !== chip){
+    zone.innerHTML = '<span class="dd-placeholder">⬇</span>';
+    document.getElementById('ddBank').appendChild(existing);
+  }
+  zone.innerHTML = '';
+  zone.appendChild(chip);
+  chip.classList.add('placed');
+  chip.style.transform = '';
+}
+
+function makeChipDraggable(chip){
+  chip.addEventListener('pointerdown', function(e){
+    if(chip.classList.contains('disabled') || ddChecked) return;
+    e.preventDefault();
+    const pointerId = e.pointerId;
+    chip.setPointerCapture(pointerId);
+    const startX = e.clientX, startY = e.clientY;
+    chip.classList.add('dragging');
+    chip.style.pointerEvents = 'none'; // منع الـ chip نفسه من حجب اكتشاف العنصر الذي تحته
+
+    function onMove(ev){
+      const dx = ev.clientX - startX, dy = ev.clientY - startY;
+      chip.style.transform = `translate(${dx}px,${dy}px)`;
+      document.querySelectorAll('.dd-drop').forEach(z=>z.classList.remove('drag-over'));
+      const el = document.elementFromPoint(ev.clientX, ev.clientY);
+      const zone = el && el.closest('.dd-drop');
+      if(zone) zone.classList.add('drag-over');
+    }
+    function onUp(ev){
+      chip.releasePointerCapture(pointerId);
+      chip.removeEventListener('pointermove', onMove);
+      chip.removeEventListener('pointerup', onUp);
+      chip.classList.remove('dragging');
+      document.querySelectorAll('.dd-drop').forEach(z=>z.classList.remove('drag-over'));
+      const el = document.elementFromPoint(ev.clientX, ev.clientY);
+      const zone = el && el.closest('.dd-drop');
+      chip.style.pointerEvents = '';
+      chip.style.transform = '';
+      if(zone){ placeChipInZone(chip, zone); }
+      else { chip.style.transform=''; }
+    }
+    chip.addEventListener('pointermove', onMove);
+    chip.addEventListener('pointerup', onUp);
+  });
+}
+
+function checkDDAnswer(){
+  const pastZone = document.getElementById('ddPastZone');
+  const ppZone = document.getElementById('ddPPZone');
+  const pastChip = pastZone.querySelector('.dd-chip');
+  const ppChip = ppZone.querySelector('.dd-chip');
+
+  const pastOk = pastChip && normalizeAnswer(pastChip.dataset.word) === normalizeAnswer(ddCorrect.past);
+  const ppOk = ppChip && normalizeAnswer(ppChip.dataset.word) === normalizeAnswer(ddCorrect.pp);
+
+  pastZone.classList.add(pastOk ? 'correct' : 'wrong');
+  ppZone.classList.add(ppOk ? 'correct' : 'wrong');
+
+  if(!pastOk) document.getElementById('ddPastAnswer').textContent = '✅ ' + ddCorrect.past;
+  if(!ppOk) document.getElementById('ddPPAnswer').textContent = '✅ ' + ddCorrect.pp;
+
+  if(pastOk && ppOk) okCount++; else noCount++;
+  updateDDScore();
+
+  ddChecked = true;
+  document.querySelectorAll('#ddBank .dd-chip, #ddPastZone .dd-chip, #ddPPZone .dd-chip').forEach(c=>c.classList.add('disabled'));
+  document.getElementById('ddCheckBtn').style.display = 'none';
+  document.getElementById('ddNextBtn').classList.add('show');
+}
+
+function nextDDQuestion(){
+  qIndex++;
+  renderDDQuestion();
+}
+
+// ============================================================
+//  RESULT
+// ============================================================
+function showResult(){
+  const total = okCount + noCount;
+  const pct = total ? Math.round(okCount/total*100) : 0;
+  document.getElementById('resultScore').textContent = `${okCount}/${total}`;
+  document.getElementById('resultPct').textContent = `${pct}%`;
+
+  let icon, rating, stars;
+  if(pct>=90){ icon='🏆'; rating='ممتاز! أتقنت هذه المجموعة 🎉'; stars='⭐⭐⭐'; }
+  else if(pct>=70){ icon='🎯'; rating='جيد جداً! راجع الأخطاء وحاول مجدداً'; stars='⭐⭐'; }
+  else { icon='📘'; rating='تحتاج مزيداً من المراجعة — لا تنتقل للمجموعة التالية بعد'; stars='⭐'; }
+
+  document.getElementById('resultIcon').textContent = icon;
+  document.getElementById('ratingText').textContent = rating;
+  document.getElementById('starsDisplay').textContent = stars;
+
+  showScreen('resultScreen');
+  if(pct>=90) launchConfetti();
+}
+
+function launchConfetti(){
+  const colors = ['#7c5cfc','#ff6b9d','#ffd166','#06d6a0','#4cc9f0'];
+  for(let i=0;i<60;i++){
+    setTimeout(()=>{
+      const p = document.createElement('div');
+      p.className = 'confetti-piece';
+      p.style.left = Math.random()*100+'%';
+      p.style.background = colors[Math.floor(Math.random()*colors.length)];
+      p.style.animationDuration = (Math.random()*1.5+2)+'s';
+      document.body.appendChild(p);
+      setTimeout(()=>p.remove(), 3600);
+    }, i*25);
+  }
+}
+
+function retryQuiz(){
+  if(currentMode==='dd') startDDQuiz(currentGroupIdx);
+  else startWRQuiz(currentGroupIdx);
+}
+
+// ============================================================
+//  EVENTS
+// ============================================================
+document.getElementById('tabBtnVideo').addEventListener('click', ()=>switchHomeTab('video'));
+document.getElementById('tabBtnQuiz').addEventListener('click', ()=>switchHomeTab('quiz'));
+document.getElementById('wrBackBtn').addEventListener('click', goHome);
+document.getElementById('wrCheckBtn').addEventListener('click', checkWRAnswer);
+document.getElementById('wrNextBtn').addEventListener('click', nextWRQuestion);
+document.getElementById('ddBackBtn').addEventListener('click', goHome);
+document.getElementById('ddCheckBtn').addEventListener('click', checkDDAnswer);
+document.getElementById('ddNextBtn').addEventListener('click', nextDDQuestion);
+document.getElementById('retryBtn').addEventListener('click', retryQuiz);
+document.getElementById('homeBtn').addEventListener('click', goHome);
+
+// Enter key support for written quiz
+document.getElementById('wrPPInput').addEventListener('keydown', e=>{
+  if(e.key==='Enter'){
+    if(document.getElementById('wrCheckBtn').style.display!=='none') checkWRAnswer();
+    else nextWRQuestion();
+  }
+});
+document.getElementById('wrPastInput').addEventListener('keydown', e=>{
+  if(e.key==='Enter') document.getElementById('wrPPInput').focus();
+});
+
+createStars();
+buildGroupsUI();
+</script>
+</body>
+</html>
