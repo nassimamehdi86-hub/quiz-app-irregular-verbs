@@ -767,5 +767,30 @@ document.getElementById('wrPastInput').addEventListener('keydown', e=>{
 createStars();
 buildGroupsUI();
 </script>
-</body>
+</body><button id="installBtn" style="display:none; position:fixed; bottom:16px; left:16px; z-index:999; padding:10px 16px; background:#238636; color:#fff; border:none; border-radius:8px; font-size:15px; cursor:pointer;">
+  ⬇️ تثبيت التطبيق
+</button>
+
+<script>
+  let deferredPrompt;
+  const installBtn = document.getElementById('installBtn');
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    installBtn.style.display = 'inline-block';
+  });
+
+  installBtn.addEventListener('click', async () => {
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    await deferredPrompt.userChoice;
+    deferredPrompt = null;
+    installBtn.style.display = 'none';
+  });
+
+  window.addEventListener('appinstalled', () => {
+    installBtn.style.display = 'none';
+  });
+</script>
 </html>
